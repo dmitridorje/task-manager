@@ -27,8 +27,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @LogAfterReturning
-    public List<Task> getAllTasks() {
-        return taskDao.getAllTasks();
+    public List<TaskDto> getAllTasks() {
+        return taskMapper.toDtoList(taskDao.getAllTasks());
     }
 
     @Override
