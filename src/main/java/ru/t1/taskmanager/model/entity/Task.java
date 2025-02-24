@@ -1,11 +1,8 @@
 package ru.t1.taskmanager.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import ru.t1.taskmanager.model.enums.TaskStatus;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "task")
@@ -24,13 +21,20 @@ public class Task {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TaskStatus status;
+
     public Task(String title, String description, Long userId) {
         this.title = title;
         this.description = description;
         this.userId = userId;
+        this.status = TaskStatus.NEW;
     }
 
-    public Task() {}
+    public Task() {
+
+    }
 
     public Long getId() {
         return id;
@@ -58,5 +62,13 @@ public class Task {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
     }
 }
