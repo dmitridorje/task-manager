@@ -1,4 +1,4 @@
-package ru.t1.taskmanager.kafka.consumer;
+package ru.t1.taskmanager.service.notification.kafka.consumer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class TaskUpdatedEventConsumer {
 
     @KafkaHandler
     public void listen(List<TaskUpdatedEvent> events, Acknowledgment ack) {
-        log.info("Received {} task updated events", events.size());
+        log.info("Received {} task updated event(s)", events.size());
         boolean allProcessedSuccessfully = true;
 
         for (TaskUpdatedEvent event : events) {
