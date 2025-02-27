@@ -1,4 +1,4 @@
-package ru.t1.taskmanager.config;
+package ru.t1.taskmanager.config.hiber;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Environment;

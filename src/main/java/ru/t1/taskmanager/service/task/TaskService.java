@@ -1,4 +1,4 @@
-package ru.t1.taskmanager.service;
+package ru.t1.taskmanager.service.task;
 
 import ru.t1.taskmanager.model.dto.TaskDto;
 

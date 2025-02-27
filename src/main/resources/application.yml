@@ -7,6 +7,27 @@ spring:
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      idempotence: false
+      acks: 1
+      properties:
+        retries: 5
+        retry.backoff.ms: 1000
+        delivery.timeout.ms: 120000
+        linger.ms: 500
+        max.in.flight.requests.per.connection: 5
+    consumer:
+      group-id: task-manager-group
+      properties:
+        fetch.min.bytes: 1024
+        fetch.max.wait.ms: 500
+        spring.json.trusted.packages: "ru.t1.taskmanager.model.event"
+      max-poll-records: 5
+    topics:
+      update: task-updated-events-topic
+    partition-number: 3
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
@@ -19,3 +40,14 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     enabled: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: example@gmail.com
+    password: whatever
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
