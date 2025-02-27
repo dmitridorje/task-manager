@@ -1,10 +1,13 @@
 package ru.t1.taskmanager.model.dto;
 
+import ru.t1.taskmanager.model.enums.TaskStatus;
+
 public class TaskDto {
     private Long id;
     private String title;
     private String description;
     private Long userId;
+    private TaskStatus status;
 
     public TaskDto() {
     }
@@ -41,6 +44,14 @@ public class TaskDto {
         this.userId = userId;
     }
 
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "TaskDto{" +
@@ -48,7 +59,7 @@ public class TaskDto {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", userId=" + userId +
+                ", status=" + status +
                 '}';
     }
 }
-

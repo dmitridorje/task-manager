@@ -91,6 +91,8 @@ public class TaskDaoHibernateImpl implements TaskDao {
         if (taskDto.getUserId() != null) {
             task.setUserId(taskDto.getUserId());
         }
+
+        task.setStatus(taskDto.getStatus());
     }
 
     private <T> T executeTransaction(TransactionFunction<T> function) {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.t1.taskmanager.model.dto.TaskDto;
-import ru.t1.taskmanager.service.TaskService;
+import ru.t1.taskmanager.service.task.TaskService;
 
 import java.util.List;
 
