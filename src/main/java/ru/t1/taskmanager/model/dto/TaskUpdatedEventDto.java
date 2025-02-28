@@ -1,14 +1,14 @@
-package ru.t1.taskmanager.model.event;
+package ru.t1.taskmanager.model.dto;
 
 import ru.t1.taskmanager.model.enums.TaskStatus;
 
-public class TaskUpdatedEvent {
+public class TaskUpdatedEventDto {
     private Long id;
     private TaskStatus status;
 
-    public TaskUpdatedEvent() {}
+    public TaskUpdatedEventDto() {}
 
-    public TaskUpdatedEvent(Long id, TaskStatus status) {
+    public TaskUpdatedEventDto(Long id, TaskStatus status) {
         this.id = id;
         this.status = status;
     }

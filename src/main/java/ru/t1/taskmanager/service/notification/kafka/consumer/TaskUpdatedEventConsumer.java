@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
-import ru.t1.taskmanager.model.event.TaskUpdatedEvent;
+import ru.t1.taskmanager.model.dto.TaskUpdatedEventDto;
 import ru.t1.taskmanager.service.notification.NotificationService;
 
 import java.util.List;
@@ -29,11 +29,11 @@ public class TaskUpdatedEventConsumer {
     }
 
     @KafkaHandler
-    public void listen(List<TaskUpdatedEvent> events, Acknowledgment ack) {
+    public void listen(List<TaskUpdatedEventDto> events, Acknowledgment ack) {
         log.info("Received {} task updated event(s)", events.size());
         boolean allProcessedSuccessfully = true;
 
-        for (TaskUpdatedEvent event : events) {
+        for (TaskUpdatedEventDto event : events) {
             try {
                 notificationService.send(event,
                         e -> "This is to notify on status change for task with ID " + e.getId() +

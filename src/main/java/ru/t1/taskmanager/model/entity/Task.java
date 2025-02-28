@@ -2,7 +2,7 @@ package ru.t1.taskmanager.model.entity;
 
 import ru.t1.taskmanager.model.enums.TaskStatus;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "task")

@@ -14,7 +14,7 @@ import ru.t1.taskmanager.aspect.annotation.CacheTask;
 import ru.t1.taskmanager.exception.TaskDtoValidationException;
 import ru.t1.taskmanager.model.dto.TaskDto;
 
-import javax.persistence.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
