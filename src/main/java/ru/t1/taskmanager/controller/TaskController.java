@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bakhtin.logging.httploggingstarter.aspect.annotation.LogHttpRequest;
 import ru.t1.taskmanager.model.dto.TaskDto;
 import ru.t1.taskmanager.service.task.TaskService;
 
@@ -28,6 +29,7 @@ public class TaskController {
     }
 
     @GetMapping
+    @LogHttpRequest
     public List<TaskDto> getAllTasks() {
         return taskService.getAllTasks();
     }
@@ -39,6 +41,7 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
+    @LogHttpRequest
     public TaskDto getTaskById(@PathVariable Long taskId) {
         return taskService.getTaskById(taskId);
     }
@@ -50,6 +53,7 @@ public class TaskController {
     }
 
     @PutMapping("/{taskId}")
+    @LogHttpRequest
     public TaskDto updateTaskById(@PathVariable Long taskId, @RequestBody TaskDto taskDto) {
         return taskService.updateTask(taskId, taskDto);
     }

@@ -31,7 +31,7 @@ public class NotificationServiceImpl implements NotificationService {
         log.info("Sending notification with the following subject: '{}'", subject);
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("example@yandex.ru");
+        message.setTo("dmitridorje@yandex.ru");
         message.setSubject(subject);
         message.setText(bodyText);
         message.setFrom(username);
