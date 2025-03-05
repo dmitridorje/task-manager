@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.t1.taskmanager.aspect.annotation.CacheTask;
-import ru.t1.taskmanager.aspect.annotation.LogAfterReturning;
-import ru.t1.taskmanager.aspect.annotation.LogNotFoundException;
-import ru.t1.taskmanager.aspect.annotation.MeasureExecutionTime;
+import ru.bakhtin.logging.httploggingstarter.aspect.annotation.LogAfterReturning;
+import ru.bakhtin.logging.httploggingstarter.aspect.annotation.LogNotFoundException;
+import ru.bakhtin.logging.httploggingstarter.aspect.annotation.MeasureExecutionTime;
 import ru.t1.taskmanager.exception.EventPublishingException;
 import ru.t1.taskmanager.kafka.producer.TaskUpdatedEventProducer;
 import ru.t1.taskmanager.mapper.TaskMapper;
@@ -55,7 +54,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    @CacheTask(CacheTask.CacheOperation.READ)
     @LogNotFoundException
     public TaskDto getTaskById(Long taskId) {
         Task task = taskRepository.findById(taskId)
@@ -65,7 +63,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    @CacheTask(CacheTask.CacheOperation.EVICT)
     @LogNotFoundException
     @Transactional
     public void removeTaskById(Long taskId) {
@@ -77,8 +74,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    @CacheTask(CacheTask.CacheOperation.UPDATE)
     @LogNotFoundException
+    @Transactional
     public TaskDto updateTask(Long taskId, TaskDto taskDto) {
         Task taskToBeUpdated = taskRepository.findById(taskId).orElseThrow(() ->
                 new EntityNotFoundException("Task not found with id " + taskId));
@@ -87,7 +84,7 @@ public class TaskServiceImpl implements TaskService {
 
         TaskDto updatedTask = taskMapper.toDto(taskRepository.save(taskToBeUpdated));
 
-        TaskUpdatedEventDto event = new TaskUpdatedEventDto(taskId, updatedTask.getStatus());
+        TaskUpdatedEventDto event = new TaskUpdatedEventDto(taskId, taskDto.getStatus());
 
         CompletableFuture<SendResult<String, Object>> future = taskUpdatedProducer.sendEvent(event);
 

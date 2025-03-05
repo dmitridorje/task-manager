@@ -23,7 +23,7 @@ spring:
       properties:
         fetch.min.bytes: 1024
         fetch.max.wait.ms: 500
-        spring.json.trusted.packages: "ru.t1.taskmanager.model.event"
+        spring.json.trusted.packages: "ru.t1.taskmanager.model.dto"
       max-poll-records: 5
     topics:
       update: task-updated-events-topic
@@ -43,8 +43,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: dmitridorjele@gmail.com
-    password: tshm audl ufgz begg
+    username: example@gmail.com
+    password: whatever
     properties:
       mail:
         smtp:
@@ -55,7 +55,6 @@ http-logging:
   enabled: true
   level: INFO
   include-request-parameters: "*"
-  exclude-request-parameters:
+  exclude-request-parameters: QUERY_STRING
   include-response-parameters: "*"
-  exclude-response-parameters:
-
+  exclude-response-parameters: HEADERS
