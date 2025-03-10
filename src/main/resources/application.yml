@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/taskmanager
+    url: jdbc:postgresql://localhost:15432/taskmanager
     username: user
     password: password
     driver-class-name: org.postgresql.Driver
@@ -54,7 +54,3 @@ spring:
 http-logging:
   enabled: true
   level: INFO
-  include-request-parameters: "*"
-  exclude-request-parameters: QUERY_STRING
-  include-response-parameters: "*"
-  exclude-response-parameters: HEADERS
