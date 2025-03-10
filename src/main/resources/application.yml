@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/taskmanager
+    url: jdbc:postgresql://localhost:15432/taskmanager
     username: user
     password: password
     driver-class-name: org.postgresql.Driver
@@ -23,7 +23,7 @@ spring:
       properties:
         fetch.min.bytes: 1024
         fetch.max.wait.ms: 500
-        spring.json.trusted.packages: "ru.t1.taskmanager.model.event"
+        spring.json.trusted.packages: "ru.t1.taskmanager.model.dto"
       max-poll-records: 5
     topics:
       update: task-updated-events-topic
@@ -51,3 +51,6 @@ spring:
           auth: true
           starttls:
             enable: true
+http-logging:
+  enabled: true
+  level: INFO
