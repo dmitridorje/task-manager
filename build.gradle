@@ -36,6 +36,13 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	implementation 'ru.bakhtin.logging:http-logging-starter:0.0.1-SNAPSHOT'
+
+	/**
+	 * Test containers
+	 */
+	implementation platform('org.testcontainers:testcontainers-bom:1.19.0')
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation 'org.testcontainers:postgresql'
 }
 
 tasks.named('test') {

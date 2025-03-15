@@ -12,6 +12,21 @@ public class TaskDto {
     public TaskDto() {
     }
 
+    public TaskDto(Long id, String title, String description, Long userId, TaskStatus taskStatus) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.userId = userId;
+        this.status = taskStatus;
+    }
+
+    public TaskDto(String title, String description, Long userId, TaskStatus taskStatus) {
+        this.title = title;
+        this.description = description;
+        this.userId = userId;
+        this.status = taskStatus;
+    }
+
     public Long getId() {
         return id;
     }
